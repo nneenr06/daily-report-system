@@ -32,10 +32,10 @@ public class EmployeeAction extends ActionBase {
 
         long employeeCount = service.countAll();
 
-        putRequestScope(AttributeConst.EMPLOYEES, employees);
-        putRequestScope(AttributeConst.EMP_COUNT, employeeCount);
-        putRequestScope(AttributeConst.PAGE, page);
-        putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE);
+        putRequestScope(AttributeConst.EMPLOYEES, employees); 
+        putRequestScope(AttributeConst.EMP_COUNT, employeeCount); 
+        putRequestScope(AttributeConst.PAGE, page); 
+        putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE); 
 
         String flush = getSessionScope(AttributeConst.FLUSH);
         if (flush != null) {
@@ -46,6 +46,15 @@ public class EmployeeAction extends ActionBase {
         forward(ForwardConst.FW_EMP_INDEX);
 
     }
+    public void entryNew() throws ServletException, IOException {
+
+        putRequestScope(AttributeConst.TOKEN, getTokenId()); 
+        putRequestScope(AttributeConst.EMPLOYEE, new EmployeeView()); 
+
+        //新規登録画面を表示
+        forward(ForwardConst.FW_EMP_NEW);
+    }
 
 }
+
 
